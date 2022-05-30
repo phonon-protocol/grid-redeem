@@ -3,6 +3,7 @@ node_modules
 coverage
 coverage.json
 typechain
+web-app/src/contracts
 
 #Hardhat files
 cache

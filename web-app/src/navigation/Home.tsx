@@ -61,12 +61,21 @@ const Home: React.FC = () => {
 						Upgrade your GRID to PHONON
 					</h2>
 					<p className='text-sm'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel
-						neque velit. Duis at justo gravida ante volutpat volutpat non id
-						urna. Pellentesque nec lectus ligula. Nam suscipit, augue consequat
-						laoreet commodo, justo sapien pretium sapien, non bibendum tellus
-						orci nec felis. Etiam arcu massa, tempus id nulla non, cursus
-						tincidunt arcu.
+						Phonon DAO has issued 10 billion PHONON tokens for the purpose of
+						managing the protocol, bootstrapping participation, and long-term
+						incentive alignment among all stakeholders.
+					</p>
+					<p className='text-sm mt-3'>
+						60.36% of all PHONON tokens are immediately available to current
+						GRID holders via a redeemer contract which issues 155 PHONON for
+						each 1 GRID upgraded. More details can be found in a{' '}
+						<a
+							className='link'
+							href='https://blog.phonon.network/phonon-dao-launch-overview-resources-and-phonon-token-details-f8369e89f1ea'
+						>
+							post on the PhononDAO blog
+						</a>
+						.
 					</p>
 				</div>
 
@@ -129,7 +138,7 @@ const Home: React.FC = () => {
 					</ButtonSendTransaction>
 				</div>
 
-				<div className='col-span-2 text-center text-xs pt-3 hover:text-pink-300'>
+				<div className='col-span-2 text-center text-xs pt-3 link'>
 					<a href='https://etherscan.io/address/0xfdcc959b0aa82e288e4154cb1c770c6c4e958a91'>
 						View Redeemer Contract on Etherscan
 					</a>

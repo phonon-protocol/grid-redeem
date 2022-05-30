@@ -16,6 +16,10 @@
 	.phonon-text-gradient {
 		@apply phonon-bg-gradient font-black text-transparent bg-clip-text;
 	}
+
+	.link {
+		@apply text-indigo-300 hover:underline;
+	}
 }
 
 body {

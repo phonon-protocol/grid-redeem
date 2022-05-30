@@ -70,7 +70,7 @@ const Home: React.FC = () => {
 					</p>
 				</div>
 
-				<div className='sm:pt-0 flex flex-col justify-between'>
+				<div className='sm:pt-0 flex flex-col justify-between mt-3 sm:mt-0'>
 					<div className='grid grid-cols-7 text-sm'>
 						<div className='col-span-3 pb-1'>GRID upgraded</div>
 						<div className='col-span-4 text-right'>

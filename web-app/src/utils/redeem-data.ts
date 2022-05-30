@@ -52,7 +52,7 @@ export const getUserData = async (account: string): Promise<UserData> => {
     [
       gridToken.balanceOf(account),
       phononToken.balanceOf(account),
-      gridToken.allowance(account, config.gridContractAddress),
+      gridToken.allowance(account, config.redeemerContractAddress),
     ]
   );
 

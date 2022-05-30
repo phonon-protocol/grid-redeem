@@ -9,12 +9,12 @@ const sendRedeemTransaction = async (
   phononToReceive: ethers.BigNumber,
   signer: ethers.Signer
 ) => {
-  const phononWithSigner = Redeemer__factory.connect(
+  const redeemerContract = Redeemer__factory.connect(
     config.redeemerContractAddress,
     signer
   );
   await sendTransaction(
-    phononWithSigner.redeem(),
+    redeemerContract.redeem(),
     getRedeemNotifications({ gridAmount, phononToReceive })
   );
 };

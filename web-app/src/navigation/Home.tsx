@@ -16,27 +16,7 @@ const Home: React.FC = () => {
   const { data: accountData } = useAccount();
   const { data: signer } = useSigner();
   const { systemData, userData, refreshData } = useData(accountData?.address);
-
-  const onRedeem = async () => {
-    if (!signer || !userData) {
-      return;
-    }
-
-    if (userData.redeemerGridAllowance.lt(userData.gridBalance)) {
-      await sendIncreaseAllowanceTransaction(signer);
-      refreshData();
-    }
-
-    await sendRedeemTransaction(
-      userData.gridBalance,
-      userData.gridBalance, // todo
-      signer
-    );
-    await refreshData();
-  };
-
-  const canRedeem =
-    !!accountData?.address && userData?.gridBalance.gt(ethers.constants.Zero);
+  const [sending, setSending] = React.useState(false);
 
   const toReceive = userData?.gridBalance
     .mul(PHONON_PER_GRID)
@@ -45,6 +25,31 @@ const Home: React.FC = () => {
         PHONON_TOKEN_DECIMALS - GRID_TOKEN_DECIMALS
       )
     );
+
+  const onRedeem = async () => {
+    if (!signer || !userData || !toReceive) {
+      return;
+    }
+
+    setSending(true);
+
+    try {
+      if (userData.redeemerGridAllowance.lt(userData.gridBalance)) {
+        await sendIncreaseAllowanceTransaction(signer);
+        refreshData();
+      }
+
+      await sendRedeemTransaction(userData.gridBalance, toReceive, signer);
+      await refreshData();
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const canRedeem =
+    !sending &&
+    !!accountData?.address &&
+    userData?.gridBalance.gt(ethers.constants.Zero);
 
   return (
     <div className="flex flex-col justify-center mt-8 sm:mx-auto sm:w-full sm:max-w-4xl backdrop-blur py-8 px-4 shadow sm:rounded-lg sm:px-10">

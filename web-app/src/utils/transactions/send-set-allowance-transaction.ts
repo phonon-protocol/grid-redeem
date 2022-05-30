@@ -5,12 +5,10 @@ import { getAllowanceNotifications } from '../../config/notifications';
 import sendTransaction from './send-transaction';
 
 const sendIncreaseAllowanceTransaction = async (signer: ethers.Signer) => {
-  const phononWithSigner = ERC20__factory.connect(
-    config.phononContractAddress,
-    signer
-  );
+  const gridToken = ERC20__factory.connect(config.gridContractAddress, signer);
+
   await sendTransaction(
-    phononWithSigner.approve(
+    gridToken.approve(
       config.redeemerContractAddress,
       ethers.constants.MaxInt256
     ),

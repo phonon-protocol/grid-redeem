@@ -16,7 +16,7 @@ const Home: React.FC = () => {
 	const { data: accountData } = useAccount();
 	const { data: signer } = useSigner();
 	const { systemData, userData, refreshData } = useData(accountData?.address);
-	const [sending, setSending] = React.useState(false);
+	const [, setSending] = React.useState(false);
 
 	const toReceive = userData?.gridBalance
 		.mul(PHONON_PER_GRID)
@@ -46,13 +46,27 @@ const Home: React.FC = () => {
 		}
 	};
 
-	const canRedeem =
-		!sending &&
-		!!accountData?.address &&
-		userData?.gridBalance.gt(ethers.constants.Zero);
+	// const canRedeem =
+	// 	!sending &&
+	// 	!!accountData?.address &&
+	// 	userData?.gridBalance.gt(ethers.constants.Zero);
 
 	return (
 		<div className='flex flex-col justify-center mt-8 sm:mx-auto sm:w-full sm:max-w-4xl backdrop-blur py-8 px-4 shadow sm:rounded-lg sm:px-10'>
+			<div className='bg-red-500 mb-5 p-2 text-center'>
+				<p className='font-bold'>Redemption period is over</p>
+				<p className='text-sm mt-1'>
+					The DAO has voted to remove PHONON liquidity from The Redeemer
+					Contract. More details can be found{' '}
+					<a
+						className='link'
+						href='https://vote.phonon.network/#/proposal/0xe37c3382a322d3377f38b3beda07610d81f4074bd8c6397c236736f98cf42844'
+					>
+						here
+					</a>
+					.
+				</p>
+			</div>
 			<h1 className='text-3xl phonon-text-gradient mb-5'>Redeem</h1>
 
 			<div className='sm:grid grid-cols-2 gap-x-16 gap-y-5'>
@@ -60,6 +74,7 @@ const Home: React.FC = () => {
 					<h2 className='text-lg phonon-text-gradient mb-5'>
 						Upgrade your GRID to PHONON
 					</h2>
+
 					<p className='text-sm'>
 						Phonon DAO has issued 10 billion PHONON tokens for the purpose of
 						managing the protocol, bootstrapping participation, and long-term
@@ -127,7 +142,7 @@ const Home: React.FC = () => {
 					<ButtonSendTransaction
 						className='w-full mt-4'
 						onClick={onRedeem}
-						disabled={!canRedeem}
+						disabled={true} // redeem is now closed
 					>
 						{toReceive?.gt(0)
 							? `Redeem ${displayToken(
